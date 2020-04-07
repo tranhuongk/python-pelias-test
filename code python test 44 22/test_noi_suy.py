@@ -30,7 +30,8 @@ with open("interpolation_result.js", "a") as result_file:
     for each_test in test_data_44_22.test_datas:
         total += 1
         housenumber = each_test["housenumber"]
-        result = requests.get(f'http://localhost:3000/search/geojson?lat=21.036&lon=105.785&number={housenumber}&street=Xuan%20Thuy').json()
+        results = requests.get(f'http://localhost:3000/search/geojson?lat=21.036&lon=105.785&number={housenumber}&street=Xuan%20Thuy').json()
+        result = results['features'][0]
         lat1 = result['properties']['lat']
         lon1 = result['properties']['lon']
         lat2 = float(each_test['real_lat'])
