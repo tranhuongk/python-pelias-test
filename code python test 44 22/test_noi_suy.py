@@ -26,7 +26,7 @@ total = 0
 
 # write distance into result file 
 with open("interpolation_result.js", "a") as result_file:
-    result_file.write('const interpolation_data = {"type":"FeatureInterpolation","features": [')
+    result_file.write('const interpolation_data2 = {"type":"FeatureInterpolation","features": [')
     for each_test in test_data_44_22.test_datas:
         total += 1
         housenumber = each_test["housenumber"]
@@ -36,16 +36,20 @@ with open("interpolation_result.js", "a") as result_file:
         lon1 = result['properties']['lon']
         lat2 = float(each_test['real_lat'])
         lon2 = float(each_test['real_lon'])
+        devia_const = 20.0
+        parity = result['properties']['parity']
+        if( parity == 'L'):
+            devia_const = 25.0
         result_file.write(str(result)+", ")
         #check pass test
         devia = math.inf
         if devia > distance(lat1, lon1, lat2, lon2):
             devia = round(distance(lat1, lon1, lat2, lon2) * 100) / 100
-            if devia <= 20.0:
-                print("PASS")
+            if devia <= devia_const:
+                print(f'POINT AT {parity} PASS')
                 pass_count += 1
             else:
-                print("FAIL")
+                print(f'POINT AT {parity} FAIL')
     result_file.write(']}')
     result_file.close()
     
