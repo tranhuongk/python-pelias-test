@@ -46,10 +46,10 @@ with open("interpolation_result.js", "a") as result_file:
         if devia > distance(lat1, lon1, lat2, lon2):
             devia = round(distance(lat1, lon1, lat2, lon2) * 100) / 100
             if devia <= devia_const:
-                print(f'POINT AT {parity} PASS')
+                print(f'{total}: housenumber {housenumber} POINT AT {parity} PASS')
                 pass_count += 1
             else:
-                print(f'POINT AT {parity} FAIL')
+                print(f'{total}: housenumber {housenumber} POINT AT {parity} FAIL')
     result_file.write(']}')
     result_file.close()
     
