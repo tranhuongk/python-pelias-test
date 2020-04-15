@@ -38,8 +38,6 @@ with open("interpolation_result.js", "a") as result_file:
         lon2 = float(each_test['real_lon'])
         devia_const = 20.0
         parity = result['properties']['parity']
-        if( parity == 'L'):
-            devia_const = 25.0
         result_file.write(str(result)+", ")
         #check pass test
         devia = math.inf
